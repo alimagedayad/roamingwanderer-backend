@@ -1,0 +1,1 @@
+module.exports.tripController = require('./trip.controller');
