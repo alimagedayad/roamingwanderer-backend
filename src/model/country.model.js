@@ -67,13 +67,12 @@ const countrySchema = new Schema({
         trim: true,
     },
     life_score: {
-        type: Number,
+        type: String,
         required: true,
         trim: true,
-        lowercase: true,
     },
-    happiness_score: {
-        type: Number,
+    happiness_level: {
+        type: String,
         required: true,
         trim: true,
         lowercase: true,
@@ -111,5 +110,20 @@ const countrySchema = new Schema({
     timestamps: true,
     useVirtuals: true,
 });
+
+// countrySchema.virtual('id').get(function() {
+//     return this._id.toHexString();
+// });
+
+countrySchema.set('toJSON', {
+    virtuals: true,
+});
+
+// remove _id
+countrySchema.options.toJSON.transform = function(doc, ret) {
+    delete ret._id;
+    delete ret.__v;
+    return ret;
+};
 
 module.exports = mongoose.model('Country', countrySchema, 'countries');

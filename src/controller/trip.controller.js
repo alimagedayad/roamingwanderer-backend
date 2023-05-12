@@ -3,6 +3,7 @@ const {getWeather, getWeatherCities} = require('../service/weather.service');
 const {getPopularDishes} = require('../service/food.service');
 const {getCurrency} = require('../service/currency.service');
 const Country = require('../model/country.model');
+
 const getTripController = (async(req, res, next) => {
     const { country } = req.params;
     const { days } = req.query;
@@ -43,7 +44,8 @@ const getCountriesController = (async(req, res, next) => {
     res.send(countries);
 })
 
+
 module.exports = {
     getTripController,
-    getCountriesController
+    getCountriesController,
 }

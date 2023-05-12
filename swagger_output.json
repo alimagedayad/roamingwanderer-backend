@@ -1,0 +1,265 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Roaming Wanderer Documentation",
+    "description": "This is the API documentation for Roaming Wanderer",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/country": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/country/{country}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/user": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/user/{user}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/overview/{country}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/countries": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "password"
+      ],
+      "additionalProperties": false
+    },
+    "country": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "capital": {
+          "type": "string"
+        },
+        "continent": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "code": {
+              "type": "string"
+            },
+            "symbol": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "code",
+            "symbol"
+          ],
+          "additionalProperties": false
+        },
+        "language": {
+          "type": "string"
+        },
+        "geometry": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "float"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "coordinates"
+          ],
+          "additionalProperties": false
+        },
+        "demonym": {
+          "type": "string"
+        },
+        "flag": {
+          "type": "string"
+        },
+        "life_score": {
+          "type": "string"
+        },
+        "happiness_level": {
+          "type": "string"
+        },
+        "income_level": {
+          "type": "number",
+          "format": "float"
+        },
+        "live_cost": {
+          "type": "number",
+          "format": "float"
+        },
+        "rent_price": {
+          "type": "number",
+          "format": "float"
+        },
+        "total_score": {
+          "type": "number",
+          "format": "float"
+        },
+        "total_cost_per_day": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "required": [
+        "name",
+        "capital",
+        "continent",
+        "currency",
+        "language",
+        "geometry",
+        "demonym",
+        "flag",
+        "life_score",
+        "happiness_level",
+        "income_level",
+        "live_cost",
+        "rent_price",
+        "total_score",
+        "total_cost_per_day"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -39,11 +39,18 @@ module.exports.countrySchema = Joi.object({
     }).required(),
     demonym: Joi.string().required(),
     flag: Joi.string().required(),
-    life_score: Joi.number().required(),
+    life_score: Joi.string().required(),
     happiness_level: Joi.string().required(),
     income_level: Joi.number().required(),
     live_cost: Joi.number().required(),
     rent_price: Joi.number().required(),
     total_score : Joi.number().required(),
     total_cost_per_day: Joi.number().required(),
+})
+
+module.exports.userSchema = Joi.object({
+    name: Joi.string().required().escapeHTML(),
+    email: Joi.string().required().escapeHTML(),
+    password: Joi.string().required().escapeHTML(),
+    role: Joi.forbidden(),
 })
