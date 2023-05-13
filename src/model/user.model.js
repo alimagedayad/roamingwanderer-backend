@@ -23,8 +23,6 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true,
     },
     role: {
         type: String,
@@ -60,15 +58,6 @@ userSchema.pre('findOneAndUpdate', async function(next) {
         return next(err)
     }
 })
-
-userSchema.methods.comparePassword = function(password, next) {
-    bcrypt.compare(password, this.password, (err, isMatch) => {
-        if(err) {
-            return next(err)
-        }
-        next(null, isMatch)
-    })
-}
 
 userSchema.method.generateHash = (pass) => {
     return bcrypt.hashSync(pass, bcrypt.genSaltSync(8), null)

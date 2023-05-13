@@ -1,5 +1,6 @@
 const express = require('express');
 const crypto = require('crypto');
+const { addSeconds } = require('date-fns');
 const Oauth = require('../model/oauth.model');
 const OauthTokens = require('../model/oauth_tokens.model');
 
@@ -24,7 +25,8 @@ module.exports.generateToken = (async(req, res, next) => {
 
     const token = await OauthTokens.create({
         issuer: oauth._id,
-        token: crypto.randomBytes(64).toString('hex')
+        token: crypto.randomBytes(64).toString('hex'),
+        expires_at: new Date(Date.now() + 10 * 60 * 1000)
     })
 
     res.send({

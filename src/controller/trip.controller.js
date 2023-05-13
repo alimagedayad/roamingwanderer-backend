@@ -18,8 +18,6 @@ const getTripController = (async(req, res, next) => {
     let food = await getPopularDishes(country_instance.demonym);
     const currency = await getCurrency(country_instance.currency.code);
 
-    console.log("food: ", )
-
     res.send({
         country: country_instance,
         weather: weather,
@@ -32,15 +30,11 @@ const getCountriesController = (async(req, res, next) => {
     const { budget } = req.query;
 
     if (budget) {
-        country_instance = await Country.find({
-            total_cost_per_day: {
-                $lte: parseInt(budget)
-            }
-        }).select("-_id name capital continent flag total_cost_per_day total_score happiness_level live_cost rent_price language rent_price income_level");
-
-        return res.send(country_instance)
+        country_instance = await Country.find().select("name capital continent flag total_cost_per_day total_score happiness_level airfare language accommodation food");
+        // Filter out countries that their total_cost_per_day is <= budget
+        return res.send(country_instance.filter(country => country.total_cost_per_day <= budget));
     } 
-    const countries = await Country.find().select("-_id name capital continent flag total_cost_per_day total_score happiness_level live_cost rent_price language rent_price income_level");
+    const countries = await Country.find().select("-_id name capital continent flag total_cost_per_day total_score happiness_level airfare language accommodation food");
     res.send(countries);
 })
 

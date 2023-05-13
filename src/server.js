@@ -5,11 +5,11 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const mongoose = require('mongoose');
 const compression = require('compression');
+require('dotenv').config()
 const routes = require('./router/v1');
 const { errorConverter, errorHandler } = require('./middleware/error');
-const { validateToken } = require('./middleware/oauth');
+const { validateToken, validateJWT } = require('./middleware/auth');
 const use  = require('./utils/use');
-
 const port = process.env.PORT || 8000;
 const app = express();
 
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
     mongoose.set('debug', true);
 }
 
-mongoose.connect("mongodb+srv://ali:H9N4kqb6d9R4UIX4@cluster0.ikrzkk5.mongodb.net/db-0", {
+mongoose.connect(`${process.env.DB_CON_STRING}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {

@@ -1,20 +1,19 @@
+const httpStatus = require('http-status');
 const Country = require('../model/country.model');
 const ApiError = require('../utils/ApiError');
-const httpStatus = require('http-status');
+
 
 const getCountriesController = (async(req, res, next) => {
     const countries = await Country.find();
     res.set('Content-Range', `country 0-${countries.length}/${countries.length}`);
     res.set('X-Total-Count', countries.length)
-    res.set('Access-Control-Expose-Headers', 'Content-Range')
+    res.set('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count')
     res.send(countries);
 })
 
 const createCountryController = (async(req, res, next) => {
-    console.log(1)
     const country = await Country.create(req.body);
     res.send(country);
-    console.log(2)
 })
 
 const getCountryController = (async(req, res, next) => {

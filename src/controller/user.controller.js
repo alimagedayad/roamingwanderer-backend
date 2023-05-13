@@ -7,7 +7,7 @@ const getUsersController = (async(req, res, next) => {
     const users = await User.find();
     res.set('Content-Range', `users 0-${users.length}/${users.length}`);
     res.set('X-Total-Count', users.length)
-    res.set('Access-Control-Expose-Headers', 'Content-Range')
+    res.set('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count')
     res.send(users);
 })
 

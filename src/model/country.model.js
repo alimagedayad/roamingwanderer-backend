@@ -77,43 +77,33 @@ const countrySchema = new Schema({
         trim: true,
         lowercase: true,
     },
-    income_level: {
+
+    food: {
         type: Number,
         required: true,
         trim: true,
         lowercase: true,
     },
-    live_cost: {
+    airfare: {
         type: Number,
         required: true,
         trim: true,
         lowercase: true,
     },
-    rent_price: {
+    accommodation: {
         type: Number,
         required: true,
         trim: true,
         lowercase: true,
     },
-    total_score: {
-        type: Number,
-        required: true,
-        trim: true,
-        lowercase: true,
-    },
-    total_cost_per_day: {
-        type: Number,
-        required: true,
-        trim: true,
-    }
 }, {
     timestamps: true,
     useVirtuals: true,
 });
 
-// countrySchema.virtual('id').get(function() {
-//     return this._id.toHexString();
-// });
+countrySchema.virtual('total_cost_per_day').get(function() {
+    return this.food + this.airfare + this.accommodation;
+});
 
 countrySchema.set('toJSON', {
     virtuals: true,
