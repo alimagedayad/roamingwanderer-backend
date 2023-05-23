@@ -102,7 +102,7 @@ const countrySchema = new Schema({
 });
 
 countrySchema.virtual('total_cost_per_day').get(function() {
-    return this.food + this.airfare + this.accommodation;
+    return this.food + this.accommodation;
 });
 
 countrySchema.set('toJSON', {
