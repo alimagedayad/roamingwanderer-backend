@@ -30,7 +30,6 @@ module.exports.validateJWT = async(req, res, next) => {
         throw new ApiError('token not found', 401)
     }
     token = token.split(' ')[1];
-    console.log("token: ", req.headers.authorization)
     const isValidToken = await verifyJWT(token);
     
     if (!isValidToken) {

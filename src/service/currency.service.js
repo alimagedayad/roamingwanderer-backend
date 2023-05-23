@@ -7,7 +7,6 @@ const getCurrency = async(currency) => {
         return response.data[currency]
     }
     catch(error){
-        console.log(error)
         return new ApiError(500, error.response)
     }
 }

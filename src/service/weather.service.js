@@ -1,7 +1,6 @@
 const axios = require('axios');
 const ApiError = require('../utils/ApiError');
 const getWeather = async (lat, long, days=7) => {
-    console.log("dayss: ", days)
     try{
         const response = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=${days}`)
         const data = response.data.daily
@@ -23,7 +22,6 @@ const getWeather = async (lat, long, days=7) => {
         return result
     }
     catch(error){
-        console.log("weather service: ", error.response)
         return new ApiError(500, error.response.data.reason)
     }
 }
@@ -32,7 +30,6 @@ const getWeather = async (lat, long, days=7) => {
 const getWeatherCities = async(cities) => {
     const weatherList = await Promise.all(cities.map(async(city) => {
         const weather = await getWeather(city.geometry.coordinates[1], city.geometry.coordinates[0]);
-        console.log(city.geometry.coordinates[1], city.geometry.coordinates[0])
         return {
             city,
             // weather
