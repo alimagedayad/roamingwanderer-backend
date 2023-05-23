@@ -29,6 +29,7 @@
     "passport": "^0.6.0",
     "sanitize-html": "^2.10.0",
     "swagger-autogen": "^2.23.1",
+    "swagger-ui-express": "^4.6.3",
     "validator": "^13.9.0",
     "xss-clean": "^0.1.1"
   },

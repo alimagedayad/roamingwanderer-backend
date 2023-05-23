@@ -9,6 +9,10 @@ require('dotenv').config()
 const routes = require('./router/v1');
 const { errorConverter, errorHandler } = require('./middleware/error');
 const { validateToken, validateJWT } = require('./middleware/auth');
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../swagger.json')
+
 const use  = require('./utils/use');
 const port = process.env.PORT || 8000;
 const app = express();
@@ -37,7 +41,9 @@ app.use(compression());
 app.use(cors());
 app.options('*', cors())
 
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(use(validateToken))
+
 app.use('/v1', routes);
 
 app.use(errorConverter);
