@@ -7,10 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost"
-    },
-    {
-      "url": "localhost"
+      "url": "https://roamingwanderer-backend-production.up.railway.app"
     }
   ],
   "paths": {
@@ -17931,7 +17928,7 @@
         }
       }
     },
-    "/v1/trip/overview/egypt": {
+    "/v1/trip/overview/{country}": {
       "get": {
         "tags": [
           "Trips"
@@ -17946,6 +17943,14 @@
             "schema": {
               "type": "string",
               "example": "{{oauth}}"
+            }
+          },
+          {
+            "name": "country",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "egypt"
             }
           }
         ],
